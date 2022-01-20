@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "heroku-release" : "node_modules/.bin/sequelize db:migrate && node_modules/.bin/sequelize db:seed:all"
+    "heroku-release": "node_modules/.bin/sequelize db:migrate && node_modules/.bin/sequelize db:seed:all"
   },
   "keywords": [],
   "author": "",
@@ -23,6 +23,7 @@
     "multer-storage-cloudinary": "^4.0.0",
     "mysql2": "^2.3.3",
     "nodemailer": "^6.7.2",
+    "pg": "^8.7.1",
     "randomstring": "^1.2.1",
     "sequelize": "^7.0.0-alpha.4",
     "sequelize-cli": "^6.3.0",
