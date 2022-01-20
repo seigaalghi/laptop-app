@@ -5,6 +5,14 @@ const port = process.env.PORT || 5000;
 const route = require("./routes");
 
 app.use(express.json());
+
+app.get("/", (req, res)=>{
+    res.status(200).json({
+        status : "Laptop app is running good",
+        time : Date.now().toLocaleString()
+    })
+})
+
 app.use("/api/v1", route);
 
 app.listen(port, () => console.log("App is running on port", port));
