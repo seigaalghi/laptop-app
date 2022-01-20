@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       Laptop.belongsTo(models.Brand, {as : "brand", foreignKey: "brandId"})
-      Laptop.belongsToMany(models.Users, {as : "likes", through : models.LaptopLike})
+      Laptop.belongsToMany(models.Users, {as : "likes", through : models.LaptopLike, foreignKey : "laptopId"})
     }
   };
   Laptop.init({
