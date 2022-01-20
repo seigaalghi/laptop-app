@@ -5,6 +5,7 @@ const { Laptop, Brand, Users } = require("../models");
 module.exports = {
   createLaptop: async (req, res) => {
     const body = req.body;
+    const file = req.file
     try {
       const schema = Joi.object({
         brandId: Joi.number().required(),
@@ -15,6 +16,7 @@ module.exports = {
       });
       const { error } = schema.validate({
         ...body,
+        image : file.path
       });
       if (error) {
         return res.status(400).json({
@@ -25,6 +27,7 @@ module.exports = {
 
       const laptop = await Laptop.create({
         ...body,
+        image : file.path
       });
 
       if (!laptop) {
