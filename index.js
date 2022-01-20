@@ -9,7 +9,7 @@ app.use(express.json());
 app.get("/", (req, res)=>{
     res.status(200).json({
         status : "Laptop app is running good",
-        time : Date.now().toLocaleString()
+        time : new Date().toLocaleString()
     })
 })
 
