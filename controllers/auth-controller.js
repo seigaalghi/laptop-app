@@ -256,4 +256,43 @@ module.exports = {
       catchHandler(res, error);
     }
   },
+  googleCallback: async (req, res) => {
+    const profile = req.user._json;
+    let user;
+    try {
+      user = await Users.findOne({ email: profile.email });
+      if (!user) {
+        user = await Users.create({
+          email: profile.email,
+          name: profile.name,
+          password: "",
+        });
+      }
+      const token = jwt.sign({ email: user.email, id: user._id }, process.env.SECRET_TOKEN);
+      res.cookie("token", token);
+      res.redirect("/");
+    } catch (error) {
+      console.log(error);
+      res.status(500).send("Internal Server Error");
+    }
+  },
+  facebookCallback: async (req, res) => {
+    const profile = req.user._json;
+    let user;
+    try {
+      user = await Users.findOne({ email: profile.email });
+      if (!user) {
+        user = await Users.create({
+          email: profile.email,
+          name: profile.name,
+          password: "",
+        });
+      }
+      const token = jwt.sign({ email: user.email, id: user._id }, process.env.SECRET_TOKEN);
+      res.cookie("token", token);
+      res.redirect("/");
+    } catch (error) {
+      res.status(500).send("Internal Server Error");
+    }
+  },
 };
